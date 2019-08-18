@@ -51,7 +51,7 @@ task api(type: Javadoc) {
 	}
 }
 
-dokka {
+/*dokka {
 	dependsOn {
 		tasks.getByName("api")
 	}
@@ -81,7 +81,7 @@ dokka {
 	externalDocumentationLink {
 		url = new URL("https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/")
 	}
-}
+}*/
 
 configurations {
 	docs
@@ -101,6 +101,7 @@ task extractDocResources(type: Sync) {
 	into "$buildDir/asciidoc/build"
 }
 
+/*
 asciidoctor {
 	sourceDir "$buildDir/asciidoc/build"
 	sources {
@@ -135,6 +136,7 @@ asciidoctor {
 }
 
 asciidoctor.dependsOn extractDocResources
+*/
 
 task docsZip(type: Zip, dependsOn: ['api', 'asciidoctor', 'dokka']) {
 	group = "Distribution"
