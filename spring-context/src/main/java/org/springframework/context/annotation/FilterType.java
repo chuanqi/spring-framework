@@ -33,12 +33,14 @@ public enum FilterType {
 
 	/**
 	 * Filter candidates marked with a given annotation.
+	 * 注解形式 比如@Controller @Service @Repository @Compent
 	 * @see org.springframework.core.type.filter.AnnotationTypeFilter
 	 */
 	ANNOTATION,
 
 	/**
 	 * Filter candidates assignable to a given type.
+	 * 指定的类型
 	 * @see org.springframework.core.type.filter.AssignableTypeFilter
 	 */
 	ASSIGNABLE_TYPE,
