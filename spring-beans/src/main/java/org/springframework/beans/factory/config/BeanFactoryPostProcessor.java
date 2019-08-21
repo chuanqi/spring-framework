@@ -35,6 +35,9 @@ import org.springframework.beans.BeansException;
  * definitions, but never bean instances. Doing so may cause premature bean
  * instantiation, violating the container and causing unintended side-effects.
  * If bean instance interaction is required, consider implementing
+ *
+ * bean工厂的后置处理器，在bean定义(bean definitions)加载完成后，bean尚未初始化前执行。
+ *
  * {@link BeanPostProcessor} instead.
  *
  * @author Juergen Hoeller
