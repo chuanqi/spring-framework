@@ -1,6 +1,7 @@
 package com.winter.demo.aop.testWinterPostProcessor;
 
 import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 @Service
 @PropertySource(value = "classpath:person1.properties",encoding = "utf-8")
 public class Person implements BeanNameAware {
+	@Autowired
+	Dog dog;
 	public Person() {
 		System.out.println("5.构造 person  对象实例");
 		System.out.println("    ===接下来会把 person对象 存入到 singletonFactories 中 ");
