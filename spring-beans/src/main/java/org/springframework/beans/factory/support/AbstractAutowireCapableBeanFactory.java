@@ -469,6 +469,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 
 		try {
+			//创建bean
 			Object beanInstance = doCreateBean(beanName, mbdToUse, args);
 			if (logger.isTraceEnabled()) {
 				logger.trace("Finished creating instance of bean '" + beanName + "'");
@@ -540,6 +541,7 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 				logger.trace("Eagerly caching bean '" + beanName +
 						"' to allow for resolving potential circular references");
 			}
+			//添加实例对象到 singletonFactories
 			addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
 		}
 
@@ -1317,6 +1319,8 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	/**
 	 * Populate the bean instance in the given BeanWrapper with the property values
 	 * from the bean definition.
+	 * 使用bean定义中的属性值填充给定BeanWrapper中的bean实例
+	 *
 	 * @param beanName the name of the bean
 	 * @param mbd the bean definition for the bean
 	 * @param bw the BeanWrapper with bean instance

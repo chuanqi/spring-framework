@@ -24,7 +24,7 @@ public class WinterInstantiationAwareBeanPostProcessor implements InstantiationA
 	@Override
 	public boolean postProcessAfterInstantiation(Object bean, String beanName) throws BeansException {
 		if (bean instanceof Person) {
-			System.out.println("6.bean名称:" + beanName + " InstantiationAwareBeanPostProcessor 执行 postProcessAfterInstantiation 实例化完成,但还没有赋值:" + ((Person) bean).getName());
+			System.out.println("6.后置处理器 InstantiationAwareBeanPostProcessor 执行 postProcessAfterInstantiation 实例化完成,但还没有赋值:" + ((Person) bean).getName());
 
 			Person person = (Person) bean;
 			person.setProvince("postProcessAfterInstantiation");
@@ -38,7 +38,7 @@ public class WinterInstantiationAwareBeanPostProcessor implements InstantiationA
 	@Override
 	public PropertyValues postProcessProperties(PropertyValues pvs, Object bean, String beanName) throws BeansException {
 		if (bean instanceof Person) {
-			System.out.println("7.bean名称:" + beanName + " InstantiationAwareBeanPostProcessor 执行 postProcessProperties 实例化完成 但还没有赋值 :" + ((Person) bean).getName());
+			System.out.println("7.后置处理器 InstantiationAwareBeanPostProcessor 执行 postProcessProperties 实例化完成 但还没有赋值 :" + ((Person) bean).getName());
 			Person person = (Person) bean;
 			person.setProvince("postProcessProperties");
 		}

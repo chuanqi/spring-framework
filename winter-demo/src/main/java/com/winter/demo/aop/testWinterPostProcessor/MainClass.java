@@ -14,7 +14,7 @@ public class MainClass {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(Config.class);
 		Person person = ctx.getBean(Person.class);
 
-		System.out.println(person.toString());
+		System.out.println("输出:"+person.toString());
 		ctx.close();
 	}
 }

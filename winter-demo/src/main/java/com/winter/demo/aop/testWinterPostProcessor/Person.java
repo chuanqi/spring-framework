@@ -16,7 +16,8 @@ import org.springframework.stereotype.Component;
 @PropertySource(value = "classpath:person1.properties",encoding = "utf-8")
 public class Person implements BeanNameAware {
 	public Person() {
-		System.out.println("构造 person  对象实例");
+		System.out.println("5.构造 person  对象实例");
+		System.out.println("    ===接下来会把 person对象 存入到 singletonFactories 中 ");
 	}
 
 	@Value("${person.age}")
@@ -60,11 +61,11 @@ public class Person implements BeanNameAware {
 	}
 
 	public void init() {
-		System.out.println("初始化 person");
+		System.out.println("7.初始化 person");
 	}
 
 	public void destroy() {
-		System.out.println("销毁 person");
+		System.out.println("12.ctx.close后 销毁 person");
 	}
 
 	@Override

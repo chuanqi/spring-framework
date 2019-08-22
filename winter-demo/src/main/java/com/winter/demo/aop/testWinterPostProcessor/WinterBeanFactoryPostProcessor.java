@@ -42,6 +42,6 @@ public class WinterBeanFactoryPostProcessor implements BeanFactoryPostProcessor 
 		 * 我们就可以根据能获取的条件，进行自己的业务逻辑处理
 		 */
 
-		System.out.println("3.BeanFactoryPostProcessor 执行 postProcessBeanFactory,  bean已定义好,但还没有实例化 ");
+		System.out.println("3.后置处理器 BeanFactoryPostProcessor 执行 postProcessBeanFactory,  bean已定义好,但还没有实例化 ");
 	}
 }

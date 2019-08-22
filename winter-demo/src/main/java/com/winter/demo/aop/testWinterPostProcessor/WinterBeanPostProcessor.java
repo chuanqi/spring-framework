@@ -15,7 +15,7 @@ public class WinterBeanPostProcessor implements BeanPostProcessor {
 	@Override
 	public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 		if (bean instanceof Person) {
-			System.out.println("8.bean名称" + beanName + "  BeanPostProcessor 执行 postProcessBeforeInitialization,在初始化之前 "+((Person) bean).getName());
+			System.out.println("8.后置处理器 BeanPostProcessor 执行 postProcessBeforeInitialization,在初始化之前 "+((Person) bean).getName());
 		}
 		return null;
 	}
@@ -23,8 +23,10 @@ public class WinterBeanPostProcessor implements BeanPostProcessor {
 	@Override
 	public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
 		if (bean instanceof Person) {
-			//
-			System.out.println("10.bean名称::" + beanName + " BeanPostProcessor 执行 postProcessAfterInitialization,初化之后 "+((Person) bean).getName());
+			((Person) bean).setProvince("postProcessAfterInitialization修改对象的值");
+			System.out.println("10.后置处理器 BeanPostProcessor 执行 postProcessAfterInitialization,初化之后 "+((Person) bean).getName());
+			System.out.println("   ====接下来会会把完全实例化的单例对象存入到singletonObjects集合中, 并执行singletonFactories.remove(beanName);earlySingletonObjects.remove(beanName);");
+			return bean;
 		}
 		return null;
 	}

@@ -16,13 +16,12 @@ import org.springframework.stereotype.Component;
 public class WinterBeanDefinitionRegistryPostProsessor implements BeanDefinitionRegistryPostProcessor {
 	@Override
 	public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) throws BeansException {
-
-		System.out.println("1.BeanDefinitionRegistryPostProcessor 执行 postProcessBeanDefinitionRegistry");
+		System.out.println("1.后置处理器 BeanDefinitionRegistryPostProcessor 执行 postProcessBeanDefinitionRegistry");
 	}
 
 	@Override
 	public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-		System.out.println("2.BeanDefinitionRegistryPostProcessor 继承自 BeanFactoryPostProcessor  执行 postProcessBeanFactory");
+		System.out.println("2.后置处理器 BeanDefinitionRegistryPostProcessor 继承自 BeanFactoryPostProcessor  执行 postProcessBeanFactory");
 
 	}
 }
