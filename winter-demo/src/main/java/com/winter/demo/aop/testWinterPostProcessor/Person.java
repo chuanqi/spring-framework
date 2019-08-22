@@ -4,7 +4,7 @@ import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 /**
  * @Description:
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
  * @Date: 2019-08-21
  * @Time: 13:41
  */
-@Service
+@Component
 @PropertySource(value = "classpath:person1.properties",encoding = "utf-8")
 public class Person implements BeanNameAware {
 	@Autowired

@@ -3,7 +3,6 @@ package com.winter.demo.aop.testWinterPostProcessor;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 /**
  * @Description:
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Service;
  * @Date: 2019-08-21
  * @Time: 17:17
  */
-@Service
 public class Dog implements InitializingBean, DisposableBean {
 	@Autowired
 	Person person;
