@@ -3,7 +3,7 @@ package com.winter.demo.aop.testWinterPostProcessor;
 import org.springframework.beans.factory.BeanNameAware;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 /**
  * @Description:
@@ -11,8 +11,7 @@ import org.springframework.stereotype.Component;
  * @Date: 2019-08-21
  * @Time: 13:41
  */
-@Component
-//@Scope(scopeName = "prototype")
+@Service
 @PropertySource(value = "classpath:person1.properties",encoding = "utf-8")
 public class Person implements BeanNameAware {
 	public Person() {
@@ -61,7 +60,7 @@ public class Person implements BeanNameAware {
 	}
 
 	public void init() {
-		System.out.println("7.初始化 person");
+		System.out.println("9.初始化 person");
 	}
 
 	public void destroy() {

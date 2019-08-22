@@ -197,15 +197,21 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	@SuppressWarnings("unchecked")
 	protected <T> T doGetBean(final String name, @Nullable final Class<T> requiredType,
 			@Nullable final Object[] args, boolean typeCheckOnly) throws BeansException {
-
+		//针对beanName进行处理
 		final String beanName = transformedBeanName(name);
 		Object bean;
 
 		// Eagerly check singleton cache for manually registered singletons.
-		// 检查手动注册的单例对象
+		// 获取缓存的单例bean
 		Object sharedInstance = getSingleton(beanName);
 		if (sharedInstance != null && args == null) {
 			if (logger.isTraceEnabled()) {
+				//获取的bean当前处于创建状态，即还未初始化完成，仅仅是new出来而已，属性还没注入完成，且存在依赖循环
+				//比如A->B，B->A
+				//1、getBean(A),获取到A的实例，此时还未进行注入
+				//2、开始注入，发现B属性，开始getBean(B)，获取到B的实例
+				//3、开始对B注入，发现A属性，获取到还未注入完成的A，即处于isSingletonCurrentlyInCreation的A
+				//4、完成B的注入，getBean(B)完成，然后A的注入也完成，也就是在构建单例的时候，会将还未完成注入的A提前暴露，便于B完成注入
 				if (isSingletonCurrentlyInCreation(beanName)) {
 					logger.trace("Returning eagerly cached instance of singleton bean '" + beanName +
 							"' that is not fully initialized yet - a consequence of a circular reference");
@@ -275,6 +281,8 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 
 				// Create bean instance.
 				if (mbd.isSingleton()) {
+					///单例的处理
+					// 首先创建beanFactory,即ObjectBeanFacotry并实现getObject接口
 					sharedInstance = getSingleton(beanName, () -> {
 						try {
 							return createBean(beanName, mbd, args);
@@ -287,6 +295,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 							throw ex;
 						}
 					});
+					//当用户输入的beanName前缀为“&”，要求获取的是factoryBean
+					//否则获取的就是普通的bean
+					//这里就是对这两种情况进行处理
 					bean = getObjectForBeanInstance(sharedInstance, name, beanName, mbd);
 				}
 
@@ -300,6 +311,9 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 					finally {
 						afterPrototypeCreation(beanName);
 					}
+					//当用户输入的beanName前缀为“&”，要求获取的是factoryBean
+					//否则获取的就是普通的bean
+					//这里就是对这两种情况进行处理
 					bean = getObjectForBeanInstance(prototypeInstance, name, beanName, mbd);
 				}
 

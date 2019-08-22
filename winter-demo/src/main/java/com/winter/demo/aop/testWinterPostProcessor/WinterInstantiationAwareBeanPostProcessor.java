@@ -16,7 +16,7 @@ public class WinterInstantiationAwareBeanPostProcessor implements InstantiationA
 	@Override
 	public Object postProcessBeforeInstantiation(Class<?> beanClass, String beanName) throws BeansException {
 		if (beanName.equalsIgnoreCase("person")) {
-			System.out.println("4.bean名称:" + beanName + " InstantiationAwareBeanPostProcessor 执行 postProcessBeforeInstantiation");
+			System.out.println("4. InstantiationAwareBeanPostProcessor 执行 postProcessBeforeInstantiation");
 		}
 		return null;
 	}
@@ -32,7 +32,8 @@ public class WinterInstantiationAwareBeanPostProcessor implements InstantiationA
 			// AbstractAutowireCapableBeanFactory类中 1385至1401行代码 有判断
 			return true;
 		}
-		return false;
+		//这里如果返回false Autowired 也不注入
+		return true;
 	}
 
 	@Override
