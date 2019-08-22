@@ -13,10 +13,14 @@ import org.springframework.stereotype.Component;
  * @Time: 13:41
  */
 @Component
-@PropertySource(value = "classpath:person1.properties",encoding = "utf-8")
+@PropertySource(value = "classpath:person1.properties", encoding = "utf-8")
 public class Person implements BeanNameAware {
 	@Autowired
+	// @Lazy
+	// 不加懒加载 ,dog里调用person无初始值,因为populateBean还未执行
+	// 或在BeanFactoryPostProcessor中的postProcessBeanFactory设置
 	Dog dog;
+
 	public Person() {
 		System.out.println("5.构造 person  对象实例");
 		System.out.println("    ===接下来会把 person对象 存入到 singletonFactories 中 ");

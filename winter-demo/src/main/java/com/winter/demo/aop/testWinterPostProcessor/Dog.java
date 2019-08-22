@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class Dog implements InitializingBean, DisposableBean {
 	@Autowired
 	Person person;
+
 	public Dog() {
 		System.out.println("狗出生了");
 	}

@@ -1,10 +1,7 @@
 package com.winter.demo.aop.testWinterPostProcessor;
 
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.config.BeanExpressionContext;
-import org.springframework.beans.factory.config.BeanExpressionResolver;
-import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
-import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.beans.factory.config.*;
 import org.springframework.stereotype.Component;
 
 /**
@@ -34,6 +31,14 @@ public class WinterBeanFactoryPostProcessor implements BeanFactoryPostProcessor 
 
 		//获取所有bean定义的name
 		String[] beanDefinitionNames = beanFactory.getBeanDefinitionNames();
+		//设置person对象懒加载
+		for (String bean :beanDefinitionNames){
+			if("person".equalsIgnoreCase(bean)){
+				BeanDefinition beanDefinition=beanFactory.getBeanDefinition(bean);
+				beanDefinition.setLazyInit(true);
+
+			}
+		}
 		//获取表达式转换器。
 		BeanExpressionResolver beanExpressionResolver = beanFactory.getBeanExpressionResolver();
 		BeanExpressionContext bec=new BeanExpressionContext(beanFactory,null);

@@ -1,6 +1,5 @@
 package com.winter.demo.aop.testWinterPostProcessor;
 
-import org.springframework.beans.factory.annotation.Autowire;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,13 +15,14 @@ import org.springframework.context.annotation.Configuration;
 //@EnableAspectJAutoProxy(proxyTargetClass = true)
 public class Config {
 
-	@Bean(autowire = Autowire.BY_NAME, initMethod = "init", destroyMethod = "destroy")
+	@Bean(initMethod = "init", destroyMethod = "destroy")
 	//@Scope(scopeName = "prototype")
 	public Person person() {
 		return new Person();
 	}
-	@Bean(autowire = Autowire.BY_NAME)
-	public Dog dog(){
+
+	@Bean
+	public Dog dog() {
 		return new Dog();
 	}
 }
